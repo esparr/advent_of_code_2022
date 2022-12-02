@@ -21,20 +21,22 @@ private
   end
 
   def calories_per_elf
-    elf_calories = []
-    elves_calories_list = []
+    @elf_calories = []
+    @elves_calories_list = []
 
     file.readlines.each do |line|
       line = line.chomp
-      elf_calories.push(line.to_i) unless line.nil? || line.empty?
-      elf_calories if line.nil? == true
-      if line.empty?
-        elves_calories_list.push(elf_calories)
-        elf_calories = []
-      end
+      @elf_calories.push(line.to_i) unless line.nil? || line.empty?
+      new_elf if line.empty?
+      @elf_calories if line.nil?
     end
     file.close
-    elves_calories_totals(elves_calories_list)
+    elves_calories_totals(@elves_calories_list)
+  end
+
+  def new_elf
+    @elves_calories_list.push(@elf_calories)
+    @elf_calories = []
   end
 
   def elves_calories_totals(elves_data)
