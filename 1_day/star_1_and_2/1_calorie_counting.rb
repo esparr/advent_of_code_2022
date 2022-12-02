@@ -1,38 +1,41 @@
+#1_calorie_counting.rb
+
 class ElfFoodManagement
-
-  def total_nutrition_points_for_elf_with_biggest_bag(file)
-    elves_total = calories_per_elf(file)
-    bulky_bagged_elf_total_calories = elves_total.max
-  end
-
-  def total_nutrition_points_top_three_elves_with_biggest_bags(file)
-    calories_per_elf(file).sort.reverse.slice(0, 3).sum
+  def output
+    puts "Nutrition points carried by top elf: " + biggest_bagged_elf.to_s
+    puts "Nutrition points carried by top 3 elves: " + top_3_biggest_bagged_elves.to_s
   end
 
 private
 
   def file
-    file = File.open("star_1/inputs.txt")
+    File.open('inputs.txt')
   end
 
-  def calories_per_elf(file)
+  def biggest_bagged_elf
+    calories_per_elf.max 
+  end
+
+  def top_3_biggest_bagged_elves
+    calories_per_elf.sort.reverse.slice(0, 3).sum
+  end
+
+  def calories_per_elf
     elf_calories = []
     elves_calories_list = []
 
     file.readlines.each do |line|
       line = line.chomp
-      if line != ''
-        elf_calories.push(line.to_i)
-      elsif line == ''
+      unless line.nil? || line.empty? then elf_calories.push(line.to_i) end
+      if line == ''
         elves_calories_list.push(elf_calories)
         elf_calories = []
-      else
-        elf_calories
       end
-
-      elf_calories
+      if line == nil
+        elf_calories = []
+      end
     end
-
+    file.close
     elves_calories_totals(elves_calories_list)
   end
 
@@ -41,8 +44,10 @@ private
     elves_data.each do |elf|
       elves_total.push(elf.sum)
     end
-
     elves_total
   end
 end
+
+nutrition = ElfFoodManagement.new
+nutrition.output
 
