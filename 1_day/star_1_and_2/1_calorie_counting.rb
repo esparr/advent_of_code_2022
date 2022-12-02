@@ -26,12 +26,10 @@ private
 
     file.readlines.each do |line|
       line = line.chomp
-      unless line.nil? || line.empty? then elf_calories.push(line.to_i) end
-      if line == ''
+      elf_calories.push(line.to_i) unless line.nil? || line.empty?
+      elf_calories if line.nil? == true
+      if line.empty?
         elves_calories_list.push(elf_calories)
-        elf_calories = []
-      end
-      if line == nil
         elf_calories = []
       end
     end
