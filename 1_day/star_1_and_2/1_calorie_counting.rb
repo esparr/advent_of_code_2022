@@ -1,19 +1,20 @@
-#1_calorie_counting.rb
+# frozen_string_literal: true
 
+# the Elf Food Management class represents all food carried by elves
 class ElfFoodManagement
   def output
-    puts "Nutrition points carried by top elf: " + biggest_bagged_elf.to_s
-    puts "Nutrition points carried by top 3 elves: " + top_3_biggest_bagged_elves.to_s
+    puts "Nutrition points carried by top elf: #{biggest_bagged_elf}"
+    puts "Nutrition points carried by top 3 elves: #{top_3_biggest_bagged_elves}"
   end
 
-private
+  private
 
   def file
     File.open('inputs.txt')
   end
 
   def biggest_bagged_elf
-    calories_per_elf.max 
+    calories_per_elf.max
   end
 
   def top_3_biggest_bagged_elves
@@ -50,4 +51,3 @@ end
 
 nutrition = ElfFoodManagement.new
 nutrition.output
-
