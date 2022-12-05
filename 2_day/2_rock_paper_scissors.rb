@@ -53,7 +53,7 @@ class RockPaperScissors
   def obj_points
     winner_points if winner
     tie_points if tie
-    loser_points unless !winner && !tie
+    loser_points unless winner || tie
   end
 
   def winner_points
