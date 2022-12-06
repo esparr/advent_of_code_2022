@@ -10,7 +10,7 @@ class ElfFoodManagement
   private
 
   def file
-    File.open('inputs.txt')
+    File.open('input.txt')
   end
 
   def biggest_bagged_elf
