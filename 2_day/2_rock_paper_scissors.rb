@@ -27,8 +27,8 @@ class RockPaperScissors
   }.freeze
 
   def results
-    puts "my total score: #{match_points_one}"
-    puts "my total score with new info: #{match_points_two}"
+    puts "my total score: #{match_points(POINT_KEY)}"
+    puts "my total score with new info: #{match_points(POINT_KEY_2)}"
   end
 
   private
@@ -37,26 +37,13 @@ class RockPaperScissors
     File.open('input.txt')
   end
 
-  def match_points_one
+  def match_points(point_key)
     @match_data = []
     file.readlines.each do |line|
       line = line.chomp
       next if line.nil? || line.empty?
 
-      points = POINT_KEY.fetch(line.to_sym)
-      @match_data.push(points)
-    end
-    file.close
-    @match_data.sum
-  end
-
-  def match_points_two
-    @match_data = []
-    file.readlines.each do |line|
-      line = line.chomp
-      next if line.nil? || line.empty?
-
-      points = POINT_KEY_2.fetch(line.to_sym)
+      points = point_key.fetch(line.to_sym)
       @match_data.push(points)
     end
     file.close
