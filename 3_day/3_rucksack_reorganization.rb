@@ -23,6 +23,7 @@ class RucksackReorganization
 
   def results
     puts "Sum of priorities of types: #{rucksack_sum}"
+    puts "Sum of the priorities of badge types: #{rucksack_badge_sum}"
   end
 
   private

@@ -4,7 +4,7 @@
 class FileHelper
   def initialize; end
 
-  def read_file(file, line_break = false)
+  def read_file(file, line_break: false)
     @data = []
 
     file.readlines.each do |line|
