@@ -23,7 +23,7 @@ class RucksackReorganization
 
   def results
     puts "Sum of priorities of types: #{rucksack_sum}"
-    puts "Sum of the priorities of badge types: #{rucksack_badge_sum}"
+    puts "Sum of priorities of badge types: #{rucksack_badge_sum}"
   end
 
   private
@@ -36,11 +36,33 @@ class RucksackReorganization
     misplaced_items = []
     rucksacks = @file_helper.read_file(file)
     rucksacks.each do |sack|
-      first, second = sack.chars.each_slice(sack.length / 2).map(&:join)
-      misplaced_item_priority = PRIORITY_KEY.fetch((first.chars & second.chars)[0].to_sym)
-      misplaced_items.push(misplaced_item_priority)
+      @first, @second = split_parts(sack)
+      misplaced_items.push(set_priority)
     end
     misplaced_items.sum
+  end
+
+  def rucksack_badge_sum
+    badge_items = []
+    @rucksacks = @file_helper.read_file(file)
+    until @rucksacks.empty?
+      badge_items.push(badge_item_priority)
+      @rucksacks.slice!(0..2)
+      @rucksacks
+    end
+    badge_items.sum
+  end
+
+  def split_parts(sack)
+    sack.chars.each_slice(sack.length / 2).map(&:join)
+  end
+
+  def set_priority
+    PRIORITY_KEY.fetch((@first.chars & @second.chars)[0].to_sym)
+  end
+
+  def badge_item_priority
+    PRIORITY_KEY.fetch((@rucksacks[0].chars & @rucksacks[1].chars & @rucksacks[2].chars)[0].to_sym)
   end
 end
 
