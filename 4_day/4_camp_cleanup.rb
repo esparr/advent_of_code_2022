@@ -8,8 +8,7 @@ class CampCleanup
   end
 
   def results
-    puts "Sum of priorities of types: #{rucksack_sum}"
-    puts "Sum of priorities of badge types: #{rucksack_badge_sum}"
+    puts "Total assignment pairs with one range fully containing the other: #{pair_sum}"
   end
 
   private
@@ -17,6 +16,8 @@ class CampCleanup
   def file
     File.open('input.txt')
   end
+
+  def pair_sum; end
 end
 
 cleanup = CampCleanup.new
