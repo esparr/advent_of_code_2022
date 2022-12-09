@@ -4,11 +4,11 @@
 class FileHelper
   def initialize; end
 
-  def read_file(file, line_break: false)
+  def read_file(file, line_break)
     @data = []
 
     file.readlines.each do |line|
-      readlines_nested(line) unless line_break == false
+      readlines_nested(line) if line_break == true
       readline_no_breaks(line) if line_break == false
 
       file.close

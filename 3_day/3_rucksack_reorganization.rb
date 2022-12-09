@@ -34,7 +34,7 @@ class RucksackReorganization
 
   def rucksack_sum
     misplaced_items = []
-    rucksacks = @file_helper.read_file(file)
+    rucksacks = @file_helper.read_file(file, false)
     rucksacks.each do |sack|
       @first, @second = split_parts(sack)
       misplaced_items.push(set_priority)
@@ -44,7 +44,7 @@ class RucksackReorganization
 
   def rucksack_badge_sum
     badge_items = []
-    @rucksacks = @file_helper.read_file(file)
+    @rucksacks = @file_helper.read_file(file, false)
     until @rucksacks.empty?
       badge_items.push(badge_item_priority)
       @rucksacks.slice!(0..2)
